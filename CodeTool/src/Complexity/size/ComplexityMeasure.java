@@ -207,13 +207,13 @@ public class ComplexityMeasure {
     }
 
 
-    public void getcomlex() {
+    public int getcomlex() {
         ComplexityMeasure complexityMeasure = new ComplexityMeasure();
         try {
             complexityMeasure.measureComplexity();
-        } catch (FileNotFoundException ex) {
+        } catch (FileNotFoundException ex) {}
 
-        }
+ 
 
         System.out.println("nkw " + complexityMeasure.nkw);
         System.out.println("nid " + complexityMeasure.nid);
@@ -221,7 +221,10 @@ public class ComplexityMeasure {
         System.out.println("nnv" + complexityMeasure.nnv);
         System.out.println("nop" + complexityMeasure.nop);
 
+ 
+
 
         System.out.println(complexityMeasure.complexity());
+        return complexityMeasure.complexity();
     }
 }
