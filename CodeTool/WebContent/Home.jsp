@@ -32,15 +32,7 @@
 
 
 	
-	<%
-		ReadFile Obj = new ReadFile();
-		out.print(Obj.read());
-	%>
 	
-	<%
-		ComplexityMeasure obj =new ComplexityMeasure();
-		obj.getcomlex();
-	%>
 
 </body>
 </html>
