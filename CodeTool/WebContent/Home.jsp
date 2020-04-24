@@ -23,11 +23,23 @@
  		<input type="submit" value="upload" />
  	</form>
 	<%
-		String file_name = (String) request.getParameter("filename");
-	if (file_name != null) {
-		out.println(" File uploaded successfuly");
-	}
-	%>
+        String file_name = (String) request.getParameter("filename");
+    if (file_name != null) {
+        out.println(" File uploaded successfuly");
+    }
+    %>
+
+ 
+
+    
+    <%
+    if (file_name != null) {
+        ReadFile Obj = new ReadFile();
+        out.print(Obj.read());
+    }
+    %>
+    
+   
 
 
 
