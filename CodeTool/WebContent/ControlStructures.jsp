@@ -1,3 +1,4 @@
+<%@ page import="Complexity.ControlStructures.ComplexityMeasureCs"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -14,6 +15,12 @@
   <a href="Coupling.jsp">Coupling</a>
   <a href="ControlStructures.jsp">Control Structures</a>
 </div>
-</body>
+
 control s
+<%
+		ComplexityMeasureCs obj =new ComplexityMeasureCs();
+		obj.measureComplexity();
+%>
+</body>
+
 </html>
