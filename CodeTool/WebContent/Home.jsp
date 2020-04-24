@@ -1,4 +1,5 @@
 <%@ page import="Handler.ReadFile"%>
+<%@ page import="Complexity.size.ComplexityMeasure"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -34,6 +35,11 @@
 	<%
 		ReadFile Obj = new ReadFile();
 		out.print(Obj.read());
+	%>
+	
+	<%
+		ComplexityMeasure obj =new ComplexityMeasure();
+		obj.getcomlex();
 	%>
 
 </body>
