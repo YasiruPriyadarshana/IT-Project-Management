@@ -43,7 +43,7 @@ public class ComplexityMeasureCs {
 		Matcher matcher = pattern.matcher(fileContent);
 		
 		while (matcher.find()) {
-		    System.out.println(matcher.group());
+//		    System.out.println(matcher.group());
 		    switch (matcher.group().toString()) {
     		case "if":
     			ifCount += 1;
@@ -86,24 +86,24 @@ public class ComplexityMeasureCs {
     	String[] wordsArray = fileContent.split(" ");
     	for (int wordIndex = 0; wordIndex < wordsArray.length; wordIndex++) {
     		switch (wordsArray[wordIndex]) {
-    		case ("if"):
+    		case "if":
     			ifCount += 1;
-    		
-    		case ("for"):
+    			break;
+    		case "for":
     			forCount += 1;
-    		
-    		case ("while"):
+    			break;
+    		case "while":
     			whileCont += 1;
-    		
-    		case ("do"):
+    			break;
+    		case "do":
     			doCount += 1;
-    		
-    		case ("switch"):
+    			break;
+    		case "switch":
     			switchCount +=1;
-    		
-    		case ("case"):
+    			break;
+    		case "case":
     			caseCount +=1;
-    		
+    			break;
     		default :
     			
     		}
@@ -126,7 +126,41 @@ public class ComplexityMeasureCs {
     //  Ccspps = Ccs value of the program statement in the immediate outer level of the current nesting level. 
     //Hence, always the value of Ccspps would be zero for control structures which reside at the first nesting level or outer most nesting level.
     public int calculateCCSPPS(String fileString) {
-    	return 0;
+    	String[] wordsArray = fileString.split(" ");
+    	int forcount=0;
+    	int brack1=0;
+    	int brack2=0;
+    	int Ccspps=0;
+    	for (int wordIndex = 0; wordIndex < wordsArray.length; wordIndex++) {
+//    		System.out.println(""+wordsArray[wordIndex]);
+    		String partWord = "for";
+        	String pattern = "\\b"+partWord+"\\b";
+            Pattern p=Pattern.compile(pattern);
+            Matcher m=p.matcher(wordsArray[wordIndex]);
+            if(wordsArray[wordIndex].contains("{")) {
+    			brack1+=1;
+    		}
+    		if(wordsArray[wordIndex].contains("}")) {
+    			brack2+=1;
+    		}
+            while (m.find()) {
+//            	System.out.println("for : "+m.group().toString());
+            	if(m.group().toString().equals("for")) {
+            		forcount+=1;
+            		if(forcount>=2) {
+            			if(brack1!=brack2) {
+            				Ccspps=3;
+            			}else {
+            				brack1=0;
+            				brack2=0;
+            			}
+            		}
+                    
+            	}
+            }
+    	}
+    	System.out.println("Ccspps " + Ccspps);
+    	return Ccspps;
     }
     
     //  Ccs = Complexity of a program statement with a control structure
@@ -168,7 +202,7 @@ public class ComplexityMeasureCs {
 	        br.close();
 	        fr.close();
 	        String finalString = fullcode.toString();
-	        System.out.println(finalString);
+//	        System.out.println(finalString);
 	       int ccs=  calculateCCS(finalString);
 	       System.out.println("css " + ccs);
 	       
