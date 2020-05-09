@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 
@@ -19,6 +21,9 @@ public class ComplexityMeasureCs {
     int Ccspps = 0;
     int Ccs = 0;
     
+    public ComplexityMeasureCs() {
+		
+   	}
     
     // Wtcs = Weight due to control structure type
     //  NC = Number of conditions in the control structure
@@ -33,6 +38,51 @@ public class ComplexityMeasureCs {
     	int[] ar;
 		ar=new int [2];
 		
+		
+		Pattern pattern = Pattern.compile("\\w+");
+		Matcher matcher = pattern.matcher(fileContent);
+		
+		while (matcher.find()) {
+		    System.out.println(matcher.group());
+		    switch (matcher.group().toString()) {
+    		case "if":
+    			ifCount += 1;
+    			break;
+    		case "for":
+    			forCount += 1;
+    			break;
+    		case "while":
+    			whileCont += 1;
+    			break;
+    		case "do":
+    			doCount += 1;
+    			break;
+    		case "switch":
+    			switchCount +=1;
+    			break;
+    		case "case":
+    			caseCount +=1;
+    			break;
+    		default :
+    			
+		    }
+		}
+//        	A conditional control structure such as an ‘if’ or ‘else-if’ condition - 2
+//        	An iterative control structure such as a ‘for’, ‘while’, or ‘do-while’ loop - 3
+//        	The ‘switch’ statement in a ‘switch-case’ control structure- 2
+//        	Each ‘case’ statement in a ‘switch-case’ control structure- 1
+    		int wtcs = (ifCount*2 + forCount*3 + (whileCont-doCount)*3 + doCount *3 + switchCount*2 + caseCount*1 );
+    		int nc = (ifCount + forCount + (whileCont-doCount) + doCount + switchCount + caseCount );
+    		
+    		ar[0]=wtcs;
+    		ar[1]=nc;
+    		System.out.println("if : "+ifCount+"for: "+forCount+"while:  "+whileCont+"switch:   "+switchCount+"case:   "+caseCount);
+    		System.out.println("wtcs : "+wtcs);
+    		System.out.println("nc : "+nc);
+		
+		
+		
+		/*
     	String[] wordsArray = fileContent.split(" ");
     	for (int wordIndex = 0; wordIndex < wordsArray.length; wordIndex++) {
     		switch (wordsArray[wordIndex]) {
@@ -66,8 +116,8 @@ public class ComplexityMeasureCs {
     		
     		ar[0]=wtcs;
     		ar[1]=nc;
-    		
-    	}
+    		 
+    	}*/
 
     	return ar;
     }
@@ -89,9 +139,7 @@ public class ComplexityMeasureCs {
 
 
 
-    public ComplexityMeasureCs() {
-		
-	}
+    
 
 	public int complexity() {
         return (Wtcs * NC) + Ccspps;
@@ -102,23 +150,28 @@ public class ComplexityMeasureCs {
   
 
     public void measureComplexity() throws IOException {
-
+	       System.out.println("Came here");
     	String fileName = "D:\\uploaded_files\\temp.txt";
 		 File file = new File(fileName);
 	        FileReader fr = new FileReader(file);
 	        BufferedReader br = new BufferedReader(fr);
 	        String line;
-	        System.out.println("Read text file using BufferedReader");
+	        
+	        StringBuilder fullcode = new StringBuilder();        
+	        
+//	        System.out.println("Read text file using BufferedReader");
 	        while((line = br.readLine()) != null){
-	            //process the line
-	            System.out.println(line);
+	            //process the line 
+	        	fullcode.append(line);
 	        }
 	        //close resources
 	        br.close();
 	        fr.close();
-	        
-	       int ccs=  calculateCCS(line);
+	        String finalString = fullcode.toString();
+	        System.out.println(finalString);
+	       int ccs=  calculateCCS(finalString);
 	       System.out.println("css " + ccs);
+	       
     }
 		
     

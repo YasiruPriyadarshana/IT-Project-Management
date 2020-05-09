@@ -131,6 +131,14 @@
   </tbody>
 </table>
 
+<%
+     {
+	ComplexityMeasureCs Obj = new ComplexityMeasureCs();
+        Obj.measureComplexity();
+     }
+    %>
+
+
 </body>
 
 </html>

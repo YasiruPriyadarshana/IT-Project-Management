@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="Complexity.size.ComplexityMeasure" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -145,8 +146,13 @@
   </tbody>
 </table>
 
+<%
+     {
+    	 ComplexityMeasure Obj = new ComplexityMeasure();
+        out.print(Obj.getcomlex());
+     }
+    %>
 
 
-size
 </body>
 </html>
